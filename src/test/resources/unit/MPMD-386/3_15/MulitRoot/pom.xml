@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>my.test.mpmd386</groupId>
+    <artifactId>MultiModuleRoot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Multi Module Root</name>
+
+  <properties>
+    <pmd.version>3.15.0</pmd.version>
+    <!-- Extension of base dir for supressfiles in multi-module projects. The rare single-module projects override this property -->
+    <path.to.suppressfile.wo.slash>${project.basedir}/..</path.to.suppressfile.wo.slash>
+  </properties>
+
+    <modules>
+      <module>moduleA</module>
+    </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${pmd.version}</version> 
+          <configuration>
+            <printFailingErrors>true</printFailingErrors>
+            <analysisCache>true</analysisCache>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <configuration>
+          <linkXref>false</linkXref>
+          <sourceEncoding>UTF-8</sourceEncoding>
+          <targetJdk>1.8</targetJdk>
+          <excludeFromFailureFile>exclude-pmd.properties</excludeFromFailureFile>
+          <!-- Before 3.15.0 -->
+          <excludeFromFailureFile>${path.to.suppressfile.wo.slash}/exclude-pmd.properties</excludeFromFailureFile>
+        </configuration>
+      </plugin>
+    </plugins>
+    </reporting>
+
+
+
+
+
+</project>
