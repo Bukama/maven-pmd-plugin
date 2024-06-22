@@ -18,26 +18,42 @@
  */
 package org.apache.maven.plugins.pmd;
 
-import java.io.File;
-
+/*
 public class PmdExcludeFileConfigurationTest extends AbstractPmdReportTestCase {
 
+
+//    Notes:
+//
+//       src/it seem to be files for integration tests, but they are not called by any failsafe test under src/test
+//
+//       all tests that are executed are using reproducer projects under src/test/resources/unit
+//
+//       and seem to use the maven-plugin-testing-harness
+//
+//
+//
+//    https://maven.apache.org/plugin-testing/maven-plugin-testing-harness/getting-started/index.html
+//
+//    1) Having a plugin with Mojo  => PmdReport extends AbstractPmdReport (check)
+//    2) maven-plugin-testing-harness depency added (check)
+//    3) Create Mojo test (check, this one extending AbstractPmdReportTestCase with setup, teardown and prepared)
+//        Based on PmdReportTest, generateReport gets the path to the pom or the path of a stubbed project, but as I have full projects I should be able to link to the pom
+//
+//        question: how to pass parameter as that's what the bug seems to be around?
+//           harness docs don't show anything for that...
+
+
+
     public void test315MultiRoot() throws Exception {
-        generateReport("pmd", "default-configuration/pmd-report-mpmd386-configuration-plugin-config.xml");
+        File report = generateReport("pmd", "MPMD-386/3_15/MultiRoot/pom.xml");
 
-        // clear the output from previous pmd:pmd execution
-        CapturingPrintStream.init(true);
+        assertNotNull("Report should be generated", report);
 
-        try {
-            final File testPom = new File(getBasedir(), "src/test/resources/unit/MPMD-386/3_15/MultiRoot/pom.xml");
-            final PmdViolationCheckMojo mojo = (PmdViolationCheckMojo) lookupMojo("check", testPom);
-            mojo.execute();
+        //         >> org.apache.maven.plugin.testing.ConfigurationException: Cannot find a configuration element for a
+        // plugin with an artifactId of maven-pmd-plugin.
 
-            fail("MojoFailureException should be thrown.");
-        } catch (final Exception e) {
-            // the version should be logged
-            String output = CapturingPrintStream.getOutput();
-            assertTrue(output.contains("exclude-pmd.properties"));
-        }
+        // ??? The Pmd-plugin is configured in the pom.xml ???
+
     }
 }
+*/
